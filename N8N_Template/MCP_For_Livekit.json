@@ -6,9 +6,9 @@
         "resource": "calendar",
         "calendar": {
           "__rl": true,
-          "value": "avijeett007@gmail.com",
+          "value": "kno2gether@gmail.com",
           "mode": "list",
-          "cachedResultName": "avijeett007@gmail.com"
+          "cachedResultName": "kno2gether@gmail.com"
         },
         "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Time', ``, 'string') }}",
         "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Time', ``, 'string') }}",
@@ -74,9 +74,9 @@
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "avijeett007@gmail.com",
+          "value": "kno2gether@gmail.com",
           "mode": "list",
-          "cachedResultName": "avijeett007@gmail.com"
+          "cachedResultName": "kno2gether@gmail.com"
         },
         "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
         "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
@@ -105,9 +105,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "avijeett007@gmail.com",
+          "value": "kno2gether@gmail.com",
           "mode": "list",
-          "cachedResultName": "avijeett007@gmail.com"
+          "cachedResultName": "kno2gether@gmail.com"
         },
         "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
         "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
