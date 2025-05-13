@@ -1,6 +1,6 @@
 # Kno2gether-Livekit-N8N-MCP
 
-![Kno2gether LiveKit MCP Integration](https://img.youtube.com/vi/CIYv59aJIv8/0.jpg)
+![Kno2gether LiveKit MCP Integration](https://img.youtube.com/vi/ClVweoou9dA/0.jpg)](https://youtu.be/ClVweoou9dA?si=7RSRCUxNN0Tff1FK)
 
 This project is a fork of [basic-mcp](https://github.com/livekit-examples/basic-mcp) that showcases a powerful voice assistant using LiveKit Agents framework and n8n (Nodemation) with Multimodal Control Protocol (MCP) tools integration for external services.
 
@@ -12,7 +12,7 @@ This project demonstrates how to build a voice AI assistant that can interact wi
 
 Learn how to build this project step-by-step in our detailed tutorial:
 
-[![LiveKit Voice AI with n8n MCP Integration Tutorial](https://img.youtube.com/vi/CIYv59aJIv8/0.jpg)](https://www.youtube.com/watch?v=CIYv59aJIv8)
+[![LiveKit Voice AI with n8n MCP Integration Tutorial](https://img.youtube.com/vi/ClVweoou9dA/0.jpg)](https://youtu.be/ClVweoou9dA?si=7RSRCUxNN0Tff1FK)
 
 *Click the image above to watch the tutorial on YouTube*
 
@@ -39,7 +39,7 @@ Learn how to build this project step-by-step in our detailed tutorial:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/Kno2gether-Livekit-N8N-MCP.git
+   git clone https://github.com/avijeett007/Kno2gether-Livekit-N8N-MCP.git
    cd Kno2gether-Livekit-N8N-MCP
    ```
 
