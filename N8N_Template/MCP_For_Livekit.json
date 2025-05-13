@@ -1,0 +1,255 @@
+{
+  "name": "MCP_For_Livekit",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "avijeett007@gmail.com",
+          "mode": "list",
+          "cachedResultName": "avijeett007@gmail.com"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Time', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Time', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        40,
+        120
+      ],
+      "id": "00e4688c-ecb3-479e-b890-fb54c45592b9",
+      "name": "Find_Free_Slot",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "GbAJlJhepX7jZhaM",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "task": "R1VGQm0zTkMxRlpJVzRrVw",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        220,
+        120
+      ],
+      "id": "37380b4c-d1de-4c7c-b6d4-bfd2ef77053c",
+      "name": "get_all_tasks",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "S01degiOE0jBBDtf",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "task": "R1VGQm0zTkMxRlpJVzRrVw",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleTasksTool",
+      "typeVersion": 1,
+      "position": [
+        400,
+        120
+      ],
+      "id": "535f5dba-a0b5-443d-b712-eb02d4be188b",
+      "name": "Create_Tasks",
+      "credentials": {
+        "googleTasksOAuth2Api": {
+          "id": "S01degiOE0jBBDtf",
+          "name": "Google Tasks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "avijeett007@gmail.com",
+          "mode": "list",
+          "cachedResultName": "avijeett007@gmail.com"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "description": "={{ $fromAI(\"event_description\", \"The event description\", \"string\") }}",
+          "summary": "={{ $fromAI(\"event_title\", \"The event title\", \"string\") }}"
+        }
+      },
+      "id": "b033afec-10e7-4e9c-969e-0ddd553027ec",
+      "name": "CreateEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        -140,
+        120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "GbAJlJhepX7jZhaM",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "avijeett007@gmail.com",
+          "mode": "list",
+          "cachedResultName": "avijeett007@gmail.com"
+        },
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "id": "17d57f11-60df-43d1-8f7f-6844a9d2c4a7",
+      "name": "SearchForEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        -300,
+        120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "GbAJlJhepX7jZhaM",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        140
+      ],
+      "id": "a1239d4c-66f4-4fe7-bd9b-3c43073920bc",
+      "name": "Current_Date_Time"
+    },
+    {
+      "parameters": {
+        "path": "3ae7d58b-82da-4a07-bd64-3ad9347b3c24"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -180
+      ],
+      "id": "3e5d6b0b-be63-4075-a23e-37496d6e5615",
+      "name": "LiveKit Voice AI MCP Server Trigger",
+      "webhookId": "3ae7d58b-82da-4a07-bd64-3ad9347b3c24"
+    },
+    {
+      "parameters": {
+        "content": "## Native MCP Trigger Node For LiveKiT Voice AI\n**Click To View The Tutorial** to edit me. [Click Here](https://docs.n8n.io/workflows/sticky-notes/)",
+        "height": 600,
+        "width": 1140
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -260
+      ],
+      "id": "33732147-f95a-4b21-ad19-925327ea445e",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Find_Free_Slot": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_all_tasks": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create_Tasks": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CreateEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SearchForEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Current_Date_Time": {
+      "ai_tool": [
+        [
+          {
+            "node": "LiveKit Voice AI MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c9323e4b-a594-457e-a7e4-d5280d5243f7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6744377aadc0f4f9ac08918f685f761440916f5da603ff8595626e0faa3b3506"
+  },
+  "id": "sy5unfFa5gsB5ff1",
+  "tags": []
+}
