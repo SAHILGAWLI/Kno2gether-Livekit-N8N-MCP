@@ -95,6 +95,18 @@ class MCPToolsIntegration:
             "boolean": bool, "array": list, "object": dict,
         }
 
+        # Build enhanced description with parameter details
+        enhanced_description = tool.description or f"Tool: {tool.name}"
+        if schema_props:
+            param_docs = []
+            for p_name, p_details in schema_props.items():
+                p_type = p_details.get("type", "string")
+                p_desc = p_details.get("description", "")
+                p_required = "required" if p_name in schema_required else "optional"
+                param_docs.append(f"  - {p_name} ({p_type}, {p_required}): {p_desc}")
+            if param_docs:
+                enhanced_description += "\n\nParameters:\n" + "\n".join(param_docs)
+
         # Build parameters from the schema properties
         for p_name, p_details in schema_props.items():
             json_type = p_details.get("type", "string")
@@ -114,15 +126,23 @@ class MCPToolsIntegration:
         async def tool_impl(**kwargs):
             input_json = json.dumps(kwargs)
             logger.info(f"Invoking tool '{tool.name}' with args: {kwargs}")
-            result_str = await tool.on_invoke_tool(None, input_json)
-            logger.info(f"Tool '{tool.name}' result: {result_str}")
-            return result_str
+            try:
+                result_str = await tool.on_invoke_tool(None, input_json)
+                logger.info(f"Tool '{tool.name}' result: {result_str[:500] if len(result_str) > 500 else result_str}")
+                return result_str
+            except Exception as e:
+                error_msg = f"Error executing {tool.name}: {str(e)}"
+                logger.error(error_msg)
+                return error_msg
 
         # Set function metadata
         tool_impl.__signature__ = inspect.Signature(parameters=params)
         tool_impl.__name__ = tool.name
-        tool_impl.__doc__ = tool.description
+        tool_impl.__doc__ = enhanced_description
         tool_impl.__annotations__ = {'return': str, **annotations}
+
+        # Log the tool registration for debugging
+        logger.debug(f"Created tool '{tool.name}' with {len(params)} parameters: {[p.name for p in params]}")
 
         # Apply the decorator and return
         return function_tool()(tool_impl)
@@ -204,9 +224,18 @@ class MCPToolsIntegration:
             agent._tools.extend(tools)
             logger.info(f"Registered {len(tools)} MCP tools with agent")
 
-            # Log the names of registered tools
-            tool_names = [getattr(t, '__name__', 'unknown') for t in tools]
-            logger.info(f"Registered tool names: {tool_names}")
+            # Log detailed tool information for debugging
+            logger.info("=" * 50)
+            logger.info("REGISTERED MCP TOOLS:")
+            logger.info("=" * 50)
+            for t in tools:
+                tool_name = getattr(t, '__name__', 'unknown')
+                tool_doc = getattr(t, '__doc__', 'No description')
+                # Truncate long descriptions for logging
+                if tool_doc and len(tool_doc) > 200:
+                    tool_doc = tool_doc[:200] + "..."
+                logger.info(f"  - {tool_name}: {tool_doc}")
+            logger.info("=" * 50)
         else:
             if not tools:
                 logger.warning("No tools were found to register with the agent")
